@@ -211,7 +211,7 @@ def cleanup_files():
 
 if __name__ == '__main__':
     try:
-        app.run()
+        app.run(debug=True,host='0.0.0.0')
     finally:
         # Optional: Add cleanup on server stop if desired
         pass
