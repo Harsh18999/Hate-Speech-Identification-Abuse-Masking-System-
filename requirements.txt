@@ -4,5 +4,4 @@ pydub==0.25.1
 transformers==4.48.3
 werkzeug==2.0.3
 ffmpeg
-torch  
 Gunicorn
