@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Censor App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Censoring Tool</h1>
+        <p>Upload a WAV file to censor toxic words</p>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file" id="file" accept=".wav" required>
+            <button type="submit">Process Audio</button>
+        </form>
+        
+        {% if original and processed %}
+        <div class="results">
+            <h2>Results</h2>
+            <div class="audio-container">
+                <div>
+                    <h3>Original Audio</h3>
+                    <audio controls>
+                        <source src="{{ url_for('download_file', filename=original) }}" type="audio/wav">
+                        Your browser does not support audio playback.
+                    </audio>
+                    <a href="{{ url_for('download_file', filename=original) }}" class="download-btn">Download Original</a>
+                </div>
+                <div>
+                    <h3>Censored Audio</h3>
+                    <audio controls>
+                        <source src="{{ url_for('download_file', filename=processed) }}" type="audio/wav">
+                        Your browser does not support audio playback.
+                    </audio>
+                    <a href="{{ url_for('download_file', filename=processed) }}" class="download-btn">Download Censored</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
