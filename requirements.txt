@@ -5,3 +5,4 @@ transformers==4.48.3
 werkzeug==2.0.3
 ffmpeg
 Gunicorn
+tensorflow
