@@ -16,6 +16,7 @@ UPLOAD_FOLDER = 'audio_uploads'  # Use a persistent directory
 ALLOWED_EXTENSIONS = {'wav'}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.environ['TRANSFORMERS_CACHE'] = tempfile.gettempdir()
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB limit
 
 # Initialize components
